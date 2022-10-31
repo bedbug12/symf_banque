@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block content_for_layout %}
+
+<h1 class="h3 mb-2 text-gray-800">Gestion des compte</h1>
+
+<div class="card shadow mb-4">
+    <div class="row my-4 ml-4">
+        <form class="form-inline" action="{{path('app_g_show_compte')}}" method="POST">
+            <div class="form-group">
+                <label for="" class="mx-3">Telephone</label>
+                <input type="text" name="tel" id="" class="form-control" placeholder="" aria-describedby="helpId"
+                 value="{{tel}}">
+                
+            </div>
+            <button name="btnSave" type="submit" class="btn btn-primary ml-2">Enregistrer</button>
+        </form>
+        </div>
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Tables Comptes</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Client</th>
+                            <th>Numero</th>
+                            <th>Solde</th>
+                            <th>Type</th>
+                            <th>Taux</th>
+                            <th>Frais</th>
+                            <th>Transaction</th>
+                        </tr>
+                    </thead>
+                
+                    <tbody>
+                    {% for data in datas %}
+                         <tr>
+                            <td>{{data.client.nomComplet}}</td>
+                            <td>{{data.numero}}</td>
+                            <td>{{data.solde}}</td>
+                            <td>{{data.type}}</td>
+                            <td>{% if data.taux is defined %}{{data.taux}}{% else %}--{% endif %}</td>
+                            <td>{% if data.frais is defined %}{{data.frais}}{% else %}--{% endif %}</td>
+                            <td>
+                                <a name="" id="" class="btn btn-success" href="#" role="button">Depot</a>
+                                <a name="" id="" class="btn btn-success" href="#" role="button">Retrait</a>
+                                <a name="" id="" class="btn btn-danger" href="#" role="button">Virement</a>
+                            </td>
+                            
+                        </tr>
+                    {% endfor %}
+                       
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
+
+
+                
+
+{% endblock content_for_layout %}
